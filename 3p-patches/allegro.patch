@@ -1,0 +1,133 @@
+diff --git a/addons/CMakeLists.txt b/addons/CMakeLists.txt
+index 726bd8b19..72580f420 100644
+--- a/addons/CMakeLists.txt
++++ b/addons/CMakeLists.txt
+@@ -82,7 +82,6 @@ if(SUPPORT_FONT AND WANT_TTF)
+     option(FREETYPE_PNG "Enable if FreeType static library needs png linked in." off)
+     option(FREETYPE_HARFBUZZ "Enable if FreeType static library needs harfbuzz linked in." off)
+ 	
+-    if(FREETYPE_FOUND)
+         set(FREETYPE_TEST_SOURCE "
+             #include <ft2build.h>
+             #include FT_FREETYPE_H
+@@ -98,72 +97,19 @@ if(SUPPORT_FONT AND WANT_TTF)
+                 return FT_Load_Glyph(face, ft_index, ft_load_flags);
+             }")
+ 
+-        set(TTF_INCLUDE_DIRECTORIES ${FREETYPE_INCLUDE_DIRS})
++        set(TTF_INCLUDE_DIRECTORIES ${freetype_INCLUDE_DIRS})
+ 
+-        set(CMAKE_REQUIRED_LIBRARIES ${FREETYPE_LIBRARIES})
+-        set(CMAKE_REQUIRED_INCLUDES ${FREETYPE_INCLUDE_DIRS})
+-        run_c_compile_test("${FREETYPE_TEST_SOURCE}" TTF_COMPILES)
+-        if(TTF_COMPILES)
+-            set(TTF_LIBRARIES ${FREETYPE_LIBRARIES})
+-        else()
+-            if(FREETYPE_ZLIB)
+-                find_package(ZLIB)
+-            endif()
+-
+-            if(FREETYPE_BZIP2)
+-                find_package(BZip2)
+-            endif()
+-
+-            if(FREETYPE_PNG)
+-                find_package(PNG)
+-            endif()
+-			
+-            if (FREETYPE_HARFBUZZ)
+-                find_package(HarfBuzz)
+-            endif()
+-
+-            # Try compiling with the extra dependencies.
+-            set(FREETYPE_STATIC_LIBRARIES ${FREETYPE_LIBRARIES})
+-            if(FREETYPE_ZLIB AND ZLIB_FOUND)
+-                list(APPEND FREETYPE_STATIC_LIBRARIES "${ZLIB_LIBRARIES}")
+-            endif()
+-
+-            if(FREETYPE_BZIP2 AND BZIP2_FOUND)
+-                list(APPEND FREETYPE_STATIC_LIBRARIES "${BZIP2_LIBRARIES}")
+-            endif()
+-
+-            if(FREETYPE_PNG AND PNG_FOUND)
+-                list(APPEND FREETYPE_STATIC_LIBRARIES "${PNG_LIBRARIES}")
+-            endif()
+-			
+-            if (FREETYPE_HARFBUZZ AND HARFBUZZ_FOUND)
+-                # there's a circular dependency between Harfbuzz and Freetype, so one of them has to be
+-                # repeated to ensure proper static linking order
+-                list(APPEND FREETYPE_STATIC_LIBRARIES "${HARFBUZZ_LIBRARIES}" "${FREETYPE_LIBRARIES}")
+-            endif()
+-
+-            set(CMAKE_REQUIRED_LIBRARIES ${FREETYPE_STATIC_LIBRARIES})
+-            set(CMAKE_REQUIRED_INCLUDES ${FREETYPE_INCLUDE_DIRS})
+-            run_c_compile_test("${FREETYPE_TEST_SOURCE}" TTF_COMPILES_WITH_EXTRA_DEPS)
+-            if(TTF_COMPILES_WITH_EXTRA_DEPS)
+-                set(TTF_COMPILES 1)
+-                set(TTF_LIBRARIES ${FREETYPE_STATIC_LIBRARIES})
+-            endif()
+-        endif()
++        set(CMAKE_REQUIRED_LIBRARIES ${freetype_LIBRARIES})
++        set(CMAKE_REQUIRED_INCLUDES ${freetype_INCLUDE_DIRS})
++        set(TTF_LIBRARIES ${freetype_LIBRARIES})
+         set(CMAKE_REQUIRED_INCLUDES)
+         set(CMAKE_REQUIRED_LIBRARIES)
+ 
+-        if(TTF_COMPILES)
+-            add_subdirectory(ttf)
+-            set(SUPPORT_TTF 1 PARENT_SCOPE)
+-            set(TTF_LINK_WITH ${TTF_LINK_WITH} PARENT_SCOPE)
+-            list(APPEND ADDON_PKG_CONFIG_FILES allegro_ttf)
+-        else()
+-            message(WARNING "FreeType doesn't compile. Disabling support.")
+-        endif()
+-    else(FREETYPE_FOUND)
+-        message("WARNING: FreeType not found, disabling support.")
+-    endif(FREETYPE_FOUND)
++        add_subdirectory(ttf)
++        set(SUPPORT_TTF 1 PARENT_SCOPE)
++        set(TTF_LINK_WITH ${TTF_LINK_WITH} PARENT_SCOPE)
++        list(APPEND ADDON_PKG_CONFIG_FILES allegro_ttf)
++
+ endif(SUPPORT_FONT AND WANT_TTF)
+ 
+ addons_summary("- TTF addon" SUPPORT_TTF)
+diff --git a/addons/image/CMakeLists.txt b/addons/image/CMakeLists.txt
+index ccfd54f07..86055a884 100644
+--- a/addons/image/CMakeLists.txt
++++ b/addons/image/CMakeLists.txt
+@@ -100,18 +100,15 @@ endif()
+ # Now look for third party libraries to handle the unsupported formats
+ if(WANT_IMAGE_FREEIMAGE)
+     find_package(FreeImage)
+-    if(FREEIMAGE_FOUND)
+         # HAVE_FREEIMAGE means libfreeimage is available (and should be used)
+         set(ALLEGRO_CFG_IIO_HAVE_FREEIMAGE 1)
+         set(ALLEGRO_CFG_IIO_SUPPORT_FREEIMAGE 1)
+         list(APPEND IMAGE_SOURCES freeimage.c)
+-        list(APPEND IMAGE_LIBRARIES ${FREEIMAGE_LIBRARIES})
+-        list(APPEND IMAGE_DEFINES ${FREEIMAGE_DEFINITIONS})
+-        list(APPEND IMAGE_INCLUDE_DIRECTORIES ${FREEIMAGE_INCLUDE_PATH})
+-        include_directories(SYSTEM ${FREEIMAGE_INCLUDE_PATH})
+-    else(FREEIMAGE_FOUND)
+-        message("WARNING: FreeImage not found, disabling support")
+-    endif(FREEIMAGE_FOUND)
++        list(APPEND IMAGE_LIBRARIES ${freeimage_LIBRARIES})
++        list(APPEND IMAGE_DEFINES ${freeimage_DEFINITIONS})
++        list(APPEND IMAGE_INCLUDE_DIRECTORIES ${freeimage_INCLUDE_DIRS})
++        include_directories(SYSTEM ${freeimage_INCLUDE_DIRS})
++
+ endif(WANT_IMAGE_FREEIMAGE)
+ 
+ image_summary(" - FreeImage" ALLEGRO_CFG_IIO_SUPPORT_FREEIMAGE)
+diff --git a/addons/ttf/CMakeLists.txt b/addons/ttf/CMakeLists.txt
+index 43974e581..de63d9919 100644
+--- a/addons/ttf/CMakeLists.txt
++++ b/addons/ttf/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ include_directories(../font)
+-include_directories(SYSTEM ${FREETYPE_INCLUDE_DIRS})
++include_directories(SYSTEM ${freetype_INCLUDE_DIRS})
+ 
+ set(TTF_SOURCES ttf.c)
+ 

@@ -1,0 +1,55 @@
+{ "frames": [
+   {
+    "filename": "tiles.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 4096, "h": 4096 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 4096, "h": 4096 },
+    "sourceSize": { "w": 4096, "h": 4096 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.3.14.3-x64",
+  "image": "tiles.png",
+  "format": "RGBA8888",
+  "size": { "w": 4096, "h": 4096 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "slices": [
+   { "name": "dungeon::c3::northsoutheast", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 32, "y": 160, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::c3::northsouthwest", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 0, "y": 160, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::c3::southwesteast", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 32, "y": 192, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::2wc::east", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 96, "y": 192, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::2wc::north", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 64, "y": 192, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::door::east", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 96, "y": 96, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::door::west", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 64, "y": 96, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::door::south", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 64, "y": 128, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::door::north", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 96, "y": 128, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::2w::vertical", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 96, "y": 160, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::2w::horizontal", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 64, "y": 160, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::c2::southwest", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 0, "y": 128, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::c2::southeast", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 32, "y": 128, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::c2::northeast", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 32, "y": 96, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::c2::northwest", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 0, "y": 96, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::corner::northeast", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 64, "y": 0, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::corner::northwest", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 0, "y": 0, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::corner::southwest", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 0, "y": 64, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::corner::southeast", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 64, "y": 64, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::wall::south", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 32, "y": 64, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::wall::north", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 32, "y": 0, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::wall::west", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 0, "y": 32, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::wall::east", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 64, "y": 32, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::floor", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 32, "y": 32, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::c3::northwesteast", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 0, "y": 192, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::c2c::northeast", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 32, "y": 224, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::c2c::southwest", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 0, "y": 256, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::c2c::southeast", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 32, "y": 256, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::c2c::northwest", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 0, "y": 224, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::2wc::west", "color": "#0000ffff", "data": "{\"test\": \"v\"}", "keys": [{ "frame": 0, "bounds": {"x": 64, "y": 224, "w": 32, "h": 32 } }] },
+   { "name": "dungeon::2wc::south", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 96, "y": 224, "w": 32, "h": 32 } }] }
+  ]
+ }
+}
