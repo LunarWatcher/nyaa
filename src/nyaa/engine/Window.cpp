@@ -3,7 +3,9 @@
 #include "allegro5/drawing.h"
 #include "allegro5/events.h"
 #include "allegro5/shader.h"
+#include "allegro5/timer.h"
 
+#include <chrono>
 #include <cstring>
 #include <spdlog/spdlog.h>
 
@@ -39,6 +41,15 @@ Window::Window(const WindowOpts& opts) {
 }
 
 Window::~Window() {
+    if (this->display) {
+        al_destroy_display(this->display);
+    }
+    if (this->frameTimer) {
+        al_destroy_timer(this->frameTimer);
+    }
+    if (this->queue) {
+        al_destroy_event_queue(this->queue);
+    }
 }
 
 void Window::run() {
@@ -47,6 +58,9 @@ void Window::run() {
     ALLEGRO_EVENT ev;
     bool redraw = false;
     bool done = false;
+
+    auto prev = std::chrono::steady_clock::now();
+
     while (true) {
         al_wait_for_event(queue, &ev);
 
@@ -70,13 +84,17 @@ void Window::run() {
 
         if (redraw && al_is_event_queue_empty(queue)) {
             al_clear_to_color(ALLEGRO_COLOR(0, 0, 0));
+            auto now = std::chrono::steady_clock::now();
+            // TODO: this produces a long, might be worth doing micro- or nanoseconds and doing float division from
+            // there
+            double delta = (double) std::chrono::duration_cast<std::chrono::milliseconds>(now - prev)
+                .count();
+            prev = now;
 
-            al_draw_filled_triangle(
-                200, 200,
-                300, 300,
-                200, 600,
-                ALLEGRO_COLOR(0.6, 0.1, 0.6)
-            );
+            if (this->controller) {
+                this->controller->tick(delta);
+                this->controller->render(delta);
+            }
 
             al_flip_display();
             redraw = false;

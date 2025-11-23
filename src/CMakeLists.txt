@@ -1,5 +1,9 @@
 add_library(nyaasrc STATIC 
-    nyaa/map/DungeonGenerator.hpp
+    nyaa/core/GameManager.cpp
+
+    nyaa/game/DungeonController.cpp
+
+    nyaa/map/dungeon/FloorGenerator.cpp
 )
 add_library(nyaaengine 
     nyaa/engine/Window.cpp

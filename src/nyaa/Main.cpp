@@ -1,11 +1,10 @@
+#include "nyaa/core/GameManager.hpp"
 #include "nyaa/engine/Preload.hpp"
-#include "nyaa/engine/Window.hpp"
+
 int main() {
     nyaa::engine::loadEngine();
 
-    nyaa::engine::Window window({
-        .displayTitle = "Test window"
-    });
-    window.run();
+    nyaa::GameManager manager;
+    manager.run();
     return 0;
 }
