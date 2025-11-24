@@ -59,8 +59,18 @@ FetchContent_Declare(alui
     GIT_REPOSITORY https://github.com/LunarWatcher/alui.cpp/
     GIT_TAG master
 )
+# Initially tried to use this for camera stuff, but:
+# 1. Allegro has so much builtin stuff for that that it doesn't make sense to use anything else
+# 2. Converting from glm to a float[4][4] _and_ passing it to ALLEGRO_TRANSFORM.m is _surprisingly_ difficult, and I could not be bothered
+# FetchContent_Declare(
+#     glm
+#     GIT_REPOSITORY https://github.com/g-truc/glm
+#     GIT_TAG 1.0.2
+#     EXCLUDE_FROM_ALL
+# )
 FetchContent_MakeAvailable(
     allegro5
+    # glm
     alui
 )
 

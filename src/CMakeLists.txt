@@ -1,4 +1,6 @@
 add_library(nyaasrc STATIC 
+    nyaa/common/RenderState.cpp
+
     nyaa/core/GameManager.cpp
 
     nyaa/game/DungeonController.cpp
@@ -7,6 +9,10 @@ add_library(nyaasrc STATIC
 )
 add_library(nyaaengine 
     nyaa/engine/Window.cpp
+
+    # Submodule for allegro extensions
+    nyaa/engine/al/Camera.cpp
+    nyaa/engine/al/OrthoCamera.cpp
 )
 add_executable(nyaa nyaa/Main.cpp)
 

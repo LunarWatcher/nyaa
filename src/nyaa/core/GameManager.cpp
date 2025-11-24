@@ -1,4 +1,5 @@
 #include "GameManager.hpp"
+#include "nyaa/common/CommonState.hpp"
 #include "nyaa/engine/Window.hpp"
 #include "nyaa/game/DungeonController.hpp"
 
@@ -8,7 +9,14 @@ GameManager::GameManager() {
     window = std::make_shared<engine::Window>(engine::WindowOpts {
         .displayTitle = "Nyaa"
     });
-    window->setController(std::make_shared<game::DungeonController>());
+
+    this->commonState = std::make_shared<common::CommonState>();
+    // this->commonState->render.worldCam.translate(100, 100);
+    window->setController(
+        std::make_shared<game::DungeonController>(
+            commonState
+        )
+    );
 }
 
 void GameManager::run() {
