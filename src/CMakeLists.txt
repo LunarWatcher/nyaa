@@ -13,11 +13,14 @@ add_library(nyaaengine
     # Submodule for allegro extensions
     nyaa/engine/al/Camera.cpp
     nyaa/engine/al/OrthoCamera.cpp
+
+    # Submodule for aseprite loading
+    nyaa/engine/aseprite/AsepriteJSON.cpp
 )
 add_executable(nyaa nyaa/Main.cpp)
 
 find_package(spdlog REQUIRED)
-find_package(reflectcpp REQUIRED)
+find_package(nlohmann_json REQUIRED)
 
 target_link_libraries(
     nyaaengine
@@ -25,7 +28,7 @@ PUBLIC
     allegro-meta
     alui
     spdlog::spdlog
-    reflectcpp::reflectcpp
+    nlohmann_json::nlohmann_json
 )
 target_link_libraries(
     nyaasrc 

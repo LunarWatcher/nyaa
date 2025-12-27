@@ -1,6 +1,7 @@
 CMakeUserPresets.json
 .cache
 .ccls-cache
+/env/
 
 # Custom
 build/

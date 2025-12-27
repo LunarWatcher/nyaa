@@ -1,18 +1,22 @@
 #include "nyaa/engine/aseprite/AsepriteJSON.hpp"
 #include <catch2/catch_test_macros.hpp>
 #include <filesystem>
-#include <rfl.hpp>
-#include <rfl/json.hpp>
+#include <fstream>
 
 TEST_CASE("Verify slice positions and sizes") {
     for (auto& de : std::filesystem::recursive_directory_iterator(std::filesystem::path{ "./assets/" })) {
         auto& path = de.path();
         if (path.extension() == ".json") {
-            auto data = rfl::json::load<nyaa::engine::aseprite::AsepriteJSON>(path);
-            if (!data) {
-                FAIL(data.error().what());
+            std::ifstream f(path);
+            if (!f) {
+                FAIL("Failed to open " << path.string());
+                return;
             }
-            for (auto& slice : data.value().meta.slices) {
+            nlohmann::json json;
+            f >> json;
+            nyaa::engine::aseprite::AsepriteJSON data = json;
+
+            for (auto& slice : data.meta.slices) {
                 for (size_t i = 0; i < slice.keys.size(); ++i) {
                     auto& key = slice.keys.at(i);
                     INFO("Validating positions for slice " << slice.name << " with key (frame?) idx=" << i << ", position"

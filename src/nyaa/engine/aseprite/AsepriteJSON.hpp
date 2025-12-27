@@ -8,7 +8,10 @@
 #pragma once
 
 #include <string>
-#include <rfl.hpp>
+#include <cstdint>
+#include <vector>
+#include <optional>
+#include <nlohmann/json.hpp>
 
 namespace nyaa::engine::aseprite {
 
@@ -37,9 +40,9 @@ struct SliceKeys {
 
 struct Slice {
     std::string name;
-    rfl::Rename<"color", std::string> colour;
+    std::string colour;
     std::vector<SliceKeys> keys;
-    rfl::Rename<"data", std::optional<std::string>> userData;
+    std::optional<std::string> userData;
 };
 
 struct AsepriteMeta {
@@ -49,5 +52,14 @@ struct AsepriteJSON {
     std::vector<Frame> frames;
     AsepriteMeta meta;
 };
+
+void from_json(const nlohmann::json& j, Dimensions& d);
+void from_json(const nlohmann::json& j, Position& d);
+void from_json(const nlohmann::json& j, Bounds& d);
+void from_json(const nlohmann::json& j, Frame& d);
+void from_json(const nlohmann::json& j, SliceKeys& d);
+void from_json(const nlohmann::json& j, Slice& d);
+void from_json(const nlohmann::json& j, AsepriteMeta& d);
+void from_json(const nlohmann::json& j, AsepriteJSON& d);
 
 }

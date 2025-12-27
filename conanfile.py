@@ -16,8 +16,14 @@ class NyaaTheUntitledGame(ConanFile):
 
     def requirements(self):
         self.requires("spdlog/1.15.3")
-        self.requires("reflect-cpp/0.19.0")
         self.requires("freetype/2.13.3")
+        # TODO: Would prefer yyjson since this is a game, but I don't think
+        # json is going to be written often enough for it to matter.
+        # yyjson is too low level to be comfortable to deserialize, and
+        # reflect-cpp is AI slop now
+        # C++26 will include reflection, I think I can write my own library
+        # wrapping yyjson then.
+        self.requires("nlohmann_json/3.12.0")
 
     def configure(self):
         self.options["spdlog"].use_std_fmt = True
