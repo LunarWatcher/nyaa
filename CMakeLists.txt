@@ -61,7 +61,7 @@ FetchContent_Declare(allegro5
     GIT_REPOSITORY https://github.com/liballeg/allegro5
     GIT_TAG 5.2.11.1
     OVERRIDE_FIND_PACKAGE
-    PATCH_COMMAND git reset --hard && git apply ${CMAKE_CURRENT_SOURCE_DIR}/3p-patches/allegro.patch
+    # PATCH_COMMAND git reset --hard && git apply ${CMAKE_CURRENT_SOURCE_DIR}/3p-patches/allegro.patch
     EXCLUDE_FROM_ALL
 )
 FetchContent_Declare(alui
