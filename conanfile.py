@@ -25,6 +25,8 @@ class NyaaTheUntitledGame(ConanFile):
         # wrapping yyjson then.
         self.requires("nlohmann_json/3.12.0")
         self.requires("libpng/1.6.53")
+        # This is required for ZLIB_INCLUDE_DIRS to be populated
+        self.requires("zlib/1.3.1")
 
     def configure(self):
         self.options["spdlog"].use_std_fmt = True

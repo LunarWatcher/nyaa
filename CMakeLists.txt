@@ -77,6 +77,10 @@ FetchContent_Declare(alui
 #     GIT_TAG 1.0.2
 #     EXCLUDE_FROM_ALL
 # )
+
+find_package(ZLIB REQUIRED)
+find_package(Freetype REQUIRED)
+find_package(PNG REQUIRED)
 FetchContent_MakeAvailable(
     allegro5
     # glm
