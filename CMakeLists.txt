@@ -17,6 +17,9 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
+option(NYAA_LINT "Whether or not to run clang-tidy" OFF)
+option(LINT_WARNINGS_ARE_ERRORS "Whether or not to set -warnings-as-errors" OFF)
+
 set(WANT_SHADERS_GL ON CACHE STRING "" FORCE)
 set(WANT_MEMFILE OFF CACHE STRING "" FORCE)
 set(WANT_PHYSFS OFF CACHE STRING "" FORCE)
@@ -118,6 +121,27 @@ foreach(ASSET IN LISTS ASSETS)
     message(STATUS "Copying ${ASSET}")
     configure_file(assets/${ASSET} ${CMAKE_CURRENT_BINARY_DIR}/assets/${ASSET} COPYONLY)
 endforeach()
+
+if (NYAA_LINT)
+    find_program(
+        CLANGTIDY
+        NAMES "clang-tidy" "clang-tidy.exe"
+        REQUIRED
+    )
+
+    set (CLANG_TIDY_COMMAND "${CLANGTIDY}" "--config-file=${CMAKE_CURRENT_SOURCE_DIR}/.clang-tidy")
+    if (LINT_WARNINGS_ARE_ERRORS)
+        list (APPEND CLANG_TIDY_COMMAND  -warnings-as-errors=*)
+    endif()
+
+    if (WIN32)
+        list (APPEND CLANG_TIDY_COMMAND --extra-arg=/EHsc)
+    endif()
+
+    message(STATUS "Using CLANG_TIDY_COMMAND=${CLANG_TIDY_COMMAND}")
+    set(CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND}")
+
+endif()
 
 add_subdirectory(src)
 add_subdirectory(tests EXCLUDE_FROM_ALL)
