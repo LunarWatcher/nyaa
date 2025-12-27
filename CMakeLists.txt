@@ -26,6 +26,7 @@ set(WANT_PHYSFS OFF CACHE STRING "" FORCE)
 set(WANT_NATIVE_DIALOG OFF CACHE STRING "" FORCE)
 set(WANT_VIDEO OFF CACHE STRING "" FORCE)
 set(WANT_IMAGE_WEBP OFF CACHE STRING "" FORCE)
+set(WANT_IMAGE_FREEIMAGE OFF CACHE STRING "" FORCE)
 set(WANT_DOCS OFF)
 set(WANT_DEMO OFF)
 set(WANT_EXAMPLES OFF)
@@ -60,7 +61,7 @@ FetchContent_Declare(allegro5
     GIT_REPOSITORY https://github.com/liballeg/allegro5
     GIT_TAG 5.2.11.1
     OVERRIDE_FIND_PACKAGE
-    PATCH_COMMAND git reset --hard && git apply ${CMAKE_CURRENT_SOURCE_DIR}/3p-patches/allegro.patch
+    # PATCH_COMMAND git reset --hard && git apply ${CMAKE_CURRENT_SOURCE_DIR}/3p-patches/allegro.patch
     EXCLUDE_FROM_ALL
 )
 FetchContent_Declare(alui
@@ -146,6 +147,10 @@ if (NYAA_LINT)
     message(STATUS "Using CLANG_TIDY_COMMAND=${CLANG_TIDY_COMMAND}")
     set(CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND}")
 
+endif()
+
+if (NOT WIN32)
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 endif()
 
 add_subdirectory(src)
