@@ -128,13 +128,14 @@ index f8867e26b..e29fb555d 100644
  
  addons_summary("- TTF addon" SUPPORT_TTF)
 diff --git a/addons/image/CMakeLists.txt b/addons/image/CMakeLists.txt
-index dac951f34..158d9bb5e 100644
+index dac951f34..527818aeb 100644
 --- a/addons/image/CMakeLists.txt
 +++ b/addons/image/CMakeLists.txt
-@@ -112,18 +112,14 @@ image_summary(" - FreeImage" ALLEGRO_CFG_IIO_SUPPORT_FREEIMAGE)
+@@ -111,19 +111,16 @@ endif(WANT_IMAGE_FREEIMAGE)
+ image_summary(" - FreeImage" ALLEGRO_CFG_IIO_SUPPORT_FREEIMAGE)
  
  if(WANT_IMAGE_PNG AND NOT ALLEGRO_CFG_IIO_SUPPORT_PNG)
-     find_package(PNG)
+-    find_package(PNG)
 -    if(PNG_FOUND)
 -        # HAVE_PNG means libpng is available (and should be used)
 -        set(ALLEGRO_CFG_IIO_HAVE_PNG 1)
@@ -147,11 +148,13 @@ index dac951f34..158d9bb5e 100644
 -    else(PNG_FOUND)
 -        message("WARNING: libpng not found, disabling support")
 -    endif(PNG_FOUND)
++    find_package(PNG REQUIRED)
++    find_package(ZLIB REQUIRED)
 +    # HAVE_PNG means libpng is available (and should be used)
 +    set(ALLEGRO_CFG_IIO_HAVE_PNG 1)
 +    set(ALLEGRO_CFG_IIO_SUPPORT_PNG 1)
 +    list(APPEND IMAGE_SOURCES png.c)
-+    list(APPEND IMAGE_LIBRARIES ${PNG_LIBRARIES})
++    list(APPEND IMAGE_LIBRARIES ${PNG_LIBRARIES} ${ZLIB_LIBARIES})
 +    list(APPEND IMAGE_DEFINES ${PNG_DEFINITIONS})
 +    list(APPEND IMAGE_INCLUDE_DIRECTORIES ${PNG_INCLUDE_DIR})
 +    include_directories(SYSTEM ${PNG_INCLUDE_DIR})
