@@ -24,6 +24,7 @@ class NyaaTheUntitledGame(ConanFile):
         # C++26 will include reflection, I think I can write my own library
         # wrapping yyjson then.
         self.requires("nlohmann_json/3.12.0")
+        self.requires("libpng/1.6.53")
 
     def configure(self):
         self.options["spdlog"].use_std_fmt = True
