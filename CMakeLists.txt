@@ -31,6 +31,11 @@ set(WANT_DEMO OFF)
 set(WANT_EXAMPLES OFF)
 set(WANT_TESTS OFF)
 set(WANT_POPUP_EXAMPLES OFF)
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "i.86" OR CMAKE_SYSTEM_PROCESSOR MATCHES "x86|AMD64")
+    set (WANT_ALLOW_SSE "avx2")
+else()
+    set (WANT_ALLOW_SSE OFF)
+endif()
 
 # FreeImage is covered by libjpeg and libpng, which is what I'll primarily be using.
 # A lot of its dependencies are (L)GPL, which I do not want to deal with
@@ -53,7 +58,7 @@ set(WANT_AUDIO OFF)
 # the patch needs to be altered at best or recreated at worst. 
 FetchContent_Declare(allegro5
     GIT_REPOSITORY https://github.com/liballeg/allegro5
-    GIT_TAG 5.2.10.1
+    GIT_TAG 5.2.11.1
     OVERRIDE_FIND_PACKAGE
     PATCH_COMMAND git reset --hard && git apply ${CMAKE_CURRENT_SOURCE_DIR}/3p-patches/allegro.patch
     EXCLUDE_FROM_ALL

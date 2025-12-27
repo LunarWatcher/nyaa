@@ -24,16 +24,25 @@ class NyaaTheUntitledGame(ConanFile):
         # C++26 will include reflection, I think I can write my own library
         # wrapping yyjson then.
         self.requires("nlohmann_json/3.12.0")
-        self.requires("libpng/1.6.53")
+        self.requires("freeimage/3.18.0")
 
     def configure(self):
         self.options["spdlog"].use_std_fmt = True
+        # Weird licenses, and no practical use for it
+        self.options["freeimage"].with_raw = False
+        self.options["freeimage"].with_webp = False
+        self.options["freeimage"].with_jpeg = False
+        self.options["freeimage"].with_jpeg2000 = False
+        self.options["freeimage"].with_openexr = False
+        self.options["freeimage"].with_jxr = False
+        self.options["freeimage"].with_tiff = False
 
     def generate(self):
         PREFERRED_LICENSES = [
             "Unlicense",
             "MIT",
             "Apache-2.0",
+            "FreeImage"
         ]
         # TODO: Fail build if only copyleft licenses are available
         if not os.path.isdir(self.OUTPUT_PATH):
