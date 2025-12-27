@@ -25,6 +25,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libvorbis-dev libtheora-dev libwebp-dev libphysfs-dev libopusfile-dev libdumb1-dev libflac-dev libpulse-dev libgtk-3-dev pandoc libenet-dev pulseaudio libasound2-dev libopenal-dev \
             libgl1-mesa-dev libglu-dev libopenmpt-dev ${{ matrix.os-config.windowSystem }}
+      - name: Install Conan
+        uses: conan-io/setup-conan@v1
       - name: Build
         run: |
           mkdir build
@@ -63,6 +65,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y xvfb libvorbis-dev libtheora-dev libwebp-dev libphysfs-dev libopusfile-dev libdumb1-dev libflac-dev libpulse-dev libgtk-3-dev pandoc libenet-dev pulseaudio libasound2-dev libopenal-dev \
             libgl1-mesa-dev libglu-dev libopenmpt-dev libx11-dev
+      - name: Install Conan
+        uses: conan-io/setup-conan@v1
       - name: Check clang-tidy
         run: |
           mkdir build
