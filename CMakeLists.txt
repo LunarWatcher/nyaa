@@ -76,15 +76,6 @@ FetchContent_MakeAvailable(
     alui
 )
 
-set (ALLEGRO_INCLUDE_DIRS
-    ${ALLEGRO_SOURCE_DIR}/include/
-    ${ALLEGRO_BINARY_DIR}/include/
-    ${ALLEGRO_SOURCE_DIR}/addons/image/
-    ${ALLEGRO_SOURCE_DIR}/addons/ttf/
-    ${ALLEGRO_SOURCE_DIR}/addons/font/
-    ${ALLEGRO_SOURCE_DIR}/addons/color/
-    ${ALLEGRO_SOURCE_DIR}/addons/primitives/
-)
 # Mini-patch, alui doesn't properly set include dirs.
 # Not sure if there's a way to fix this on alui's side without 
 # making changes that risk breaking fetchcontent.
