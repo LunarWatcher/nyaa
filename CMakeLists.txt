@@ -115,7 +115,7 @@ if (NYAA_LINT)
     endif()
 
     message(STATUS "Using CLANG_TIDY_COMMAND=${CLANG_TIDY_COMMAND}")
-    set(CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND}")
+    set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND}")
 
 endif()
 
