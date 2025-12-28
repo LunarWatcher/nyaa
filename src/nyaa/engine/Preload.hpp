@@ -23,6 +23,7 @@ inline void loadEngine() {
     if (!al_init()) {
         spdlog::error("Failed to initialise allegro");
         auto err = al_get_errno();
+        spdlog::error("Allegro error code {}", err);
         throw std::runtime_error("Allegro failure");
     }
     spdlog::debug("Loading allegro...");

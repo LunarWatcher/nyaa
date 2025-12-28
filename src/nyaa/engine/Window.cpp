@@ -83,7 +83,7 @@ void Window::run() {
         }
 
         if (redraw && al_is_event_queue_empty(queue)) {
-            al_clear_to_color(ALLEGRO_COLOR(0, 0, 0));
+            al_clear_to_color(ALLEGRO_COLOR(0, 0, 0, 1));
             auto now = std::chrono::steady_clock::now();
             // TODO: this produces a long, might be worth doing micro- or nanoseconds and doing float division from
             // there
