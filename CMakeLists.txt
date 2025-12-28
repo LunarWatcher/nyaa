@@ -38,10 +38,6 @@ else()
     set (WANT_ALLOW_SSE OFF)
 endif()
 
-# FreeImage is covered by libjpeg and libpng, which is what I'll primarily be using.
-# A lot of its dependencies are (L)GPL, which I do not want to deal with
-set(WANT_IMAGE_FREEIMAGE OFF)
-
 # I do not have the skill required to do audio stuff. Turning off the audio plugin saves 
 # me from having to patch all the audio files, especially when I have no idea what I
 # might need
@@ -57,12 +53,8 @@ set(WANT_AUDIO OFF)
 # All the other dependencies currently in use are automagically resolved.
 # In the event of an allegro update, or for if WANT_AUDIO is ever enabled,
 # the patch needs to be altered at best or recreated at worst. 
-FetchContent_Declare(allegro5
-    GIT_REPOSITORY https://github.com/liballeg/allegro5
-    GIT_TAG 5.2.11.1
-    OVERRIDE_FIND_PACKAGE
-    PATCH_COMMAND git reset --hard && git apply ${CMAKE_CURRENT_SOURCE_DIR}/3p-patches/allegro.patch
-    EXCLUDE_FROM_ALL
+FetchContent_Declare(allegro5-patch
+    GIT_REPOSITORY https://github.com/LunarWatcher/allegro5-cmake
 )
 FetchContent_Declare(alui
     GIT_REPOSITORY https://github.com/LunarWatcher/alui.cpp/
@@ -78,23 +70,20 @@ FetchContent_Declare(alui
 #     EXCLUDE_FROM_ALL
 # )
 
-find_package(ZLIB REQUIRED)
-find_package(Freetype REQUIRED)
-find_package(PNG REQUIRED)
 FetchContent_MakeAvailable(
-    allegro5
+    allegro5-patch
     # glm
     alui
 )
 
 set (ALLEGRO_INCLUDE_DIRS
-    ${allegro5_SOURCE_DIR}/include/
-    ${allegro5_BINARY_DIR}/include/
-    ${allegro5_SOURCE_DIR}/addons/image/
-    ${allegro5_SOURCE_DIR}/addons/ttf/
-    ${allegro5_SOURCE_DIR}/addons/font/
-    ${allegro5_SOURCE_DIR}/addons/color/
-    ${allegro5_SOURCE_DIR}/addons/primitives/
+    ${ALLEGRO_SOURCE_DIR}/include/
+    ${ALLEGRO_BINARY_DIR}/include/
+    ${ALLEGRO_SOURCE_DIR}/addons/image/
+    ${ALLEGRO_SOURCE_DIR}/addons/ttf/
+    ${ALLEGRO_SOURCE_DIR}/addons/font/
+    ${ALLEGRO_SOURCE_DIR}/addons/color/
+    ${ALLEGRO_SOURCE_DIR}/addons/primitives/
 )
 # Mini-patch, alui doesn't properly set include dirs.
 # Not sure if there's a way to fix this on alui's side without 
@@ -102,21 +91,7 @@ set (ALLEGRO_INCLUDE_DIRS
 # Maybe this is an application for find_package/overrides?
 target_include_directories(alui PUBLIC ${ALLEGRO_INCLUDE_DIRS})
 
-# Meta interface target that links with all the libraries and headers
-add_library(allegro-meta INTERFACE)
-target_include_directories(allegro-meta INTERFACE ${ALLEGRO_INCLUDE_DIRS})
-target_link_libraries(
-    allegro-meta
-INTERFACE
-    allegro
-    allegro_primitives
-    allegro_font
-    allegro_color
-    allegro_image
-    allegro_ttf
-)
-
-configure_file(${allegro5_SOURCE_DIR}/LICENSE.txt
+configure_file(${ALLEGRO_SOURCE_DIR}/LICENSE.txt
     ${CMAKE_CURRENT_BINARY_DIR}/LICENSES/allegro5-UNK COPYONLY)
 configure_file(${alui_SOURCE_DIR}/LICENSE
     ${CMAKE_CURRENT_BINARY_DIR}/LICENSES/alui-MIT COPYONLY)
