@@ -60,6 +60,12 @@ FetchContent_Declare(alui
     GIT_REPOSITORY https://github.com/LunarWatcher/alui.cpp/
     GIT_TAG master
 )
+FetchContent_Declare(stc
+    GIT_REPOSITORY https://github.com/LunarWatcher/stc
+)
+FetchContent_Declare(minilog
+    GIT_REPOSITORY https://github.com/LunarWatcher/minilog
+)
 # Initially tried to use this for camera stuff, but:
 # 1. Allegro has so much builtin stuff for that that it doesn't make sense to use anything else
 # 2. Converting from glm to a float[4][4] _and_ passing it to ALLEGRO_TRANSFORM.m is _surprisingly_ difficult, and I could not be bothered
@@ -74,6 +80,9 @@ FetchContent_MakeAvailable(
     allegro5-patch
     # glm
     alui
+
+    stc
+    minilog
 )
 
 # Mini-patch, alui doesn't properly set include dirs.
