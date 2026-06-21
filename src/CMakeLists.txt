@@ -19,7 +19,6 @@ add_library(nyaaengine
 )
 add_executable(nyaa nyaa/Main.cpp)
 
-find_package(spdlog REQUIRED)
 find_package(nlohmann_json REQUIRED)
 
 target_link_libraries(
