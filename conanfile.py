@@ -15,7 +15,6 @@ class NyaaTheUntitledGame(ConanFile):
     )
 
     def requirements(self):
-        self.requires("spdlog/1.15.3")
         self.requires("freetype/2.13.3")
         # TODO: Would prefer yyjson since this is a game, but I don't think
         # json is going to be written often enough for it to matter.

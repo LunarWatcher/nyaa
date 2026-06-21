@@ -1,4 +1,4 @@
-add_library(nyaasrc STATIC 
+add_library(nyaasrc STATIC
     nyaa/common/RenderState.cpp
 
     nyaa/core/GameManager.cpp
@@ -7,7 +7,7 @@ add_library(nyaasrc STATIC
 
     nyaa/map/dungeon/FloorGenerator.cpp
 )
-add_library(nyaaengine 
+add_library(nyaaengine
     nyaa/engine/Window.cpp
 
     # Submodule for allegro extensions
@@ -27,13 +27,15 @@ target_link_libraries(
 PUBLIC
     allegro-meta
     alui
-    spdlog::spdlog
     nlohmann_json::nlohmann_json
+    stc
+    minilog
 )
 target_link_libraries(
-    nyaasrc 
-PUBLIC 
+    nyaasrc
+PUBLIC
     nyaaengine
+    CLI11::CLI11
 )
 
 target_link_libraries(nyaa PUBLIC nyaasrc)

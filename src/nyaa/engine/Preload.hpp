@@ -6,7 +6,7 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
-#include <spdlog/spdlog.h>
+#include "nyaa/engine/Logger.hpp"
 
 namespace nyaa::engine {
 
@@ -19,14 +19,14 @@ namespace nyaa::engine {
  * And it is a fair point. If a headed mode is used in the tests, we don't want to call al_init et. al unnecessarily.
  */
 inline void loadEngine() {
-    spdlog::debug("loadEngine called");
+    nyaa::engine::logger->debug("loadEngine called");
     if (!al_init()) {
-        spdlog::error("Failed to initialise allegro");
+        nyaa::engine::logger->error("Failed to initialise allegro");
         auto err = al_get_errno();
-        spdlog::error("Allegro error code {}", err);
+        nyaa::engine::logger->error("Allegro error code {}", err);
         throw std::runtime_error("Allegro failure");
     }
-    spdlog::debug("Loading allegro...");
+    nyaa::engine::logger->debug("Loading allegro...");
     al_init_font_addon();
     al_init_ttf_addon();
     al_init_primitives_addon();

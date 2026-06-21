@@ -6,8 +6,6 @@
 #include "allegro5/timer.h"
 
 #include <chrono>
-#include <cstring>
-#include <spdlog/spdlog.h>
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_ttf.h>

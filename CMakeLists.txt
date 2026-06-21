@@ -66,6 +66,11 @@ FetchContent_Declare(stc
 FetchContent_Declare(minilog
     GIT_REPOSITORY https://github.com/LunarWatcher/minilog
 )
+# AI slop-free fork of CLIUtils/CLI11
+FetchContent_Declare(CLI11
+    GIT_REPOSITORY https://github.com/LunarWatcher/CLI11
+    GIT_TAG v3.0.0
+)
 # Initially tried to use this for camera stuff, but:
 # 1. Allegro has so much builtin stuff for that that it doesn't make sense to use anything else
 # 2. Converting from glm to a float[4][4] _and_ passing it to ALLEGRO_TRANSFORM.m is _surprisingly_ difficult, and I could not be bothered
@@ -83,6 +88,7 @@ FetchContent_MakeAvailable(
 
     stc
     minilog
+    CLI11
 )
 
 # Mini-patch, alui doesn't properly set include dirs.
