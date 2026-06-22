@@ -30,7 +30,7 @@ struct Frame {
     Bounds spriteSourceSize;
     Dimensions sourceSize;
     // TODO: uint?
-    int64_t duration;
+    uint64_t duration;
 };
 
 struct SliceKeys {
@@ -38,11 +38,36 @@ struct SliceKeys {
     Bounds bounds;
 };
 
+/**
+ * Source data for nyaa-compatible aseprite userdata. Valid nyaa userdata is in the form
+ * ```
+ * nyaa
+ * frames[uint32]
+ * ```
+ * Example:
+ * ```
+ * nyaa
+ * 4
+ * ```
+ *
+ * For descriptions of what the fields mean, see the docs for the corresponding fields.
+ */
+struct NyaaAsepriteUserData {
+    /**
+     * \brief The number of frames the slice exists in.
+     * \note The slice MUST start at the first frame. Frame offsets are not supported at this time because it's easily
+     * solvable by just making everything relative to frame 0
+     * 
+     * frames = 0 means available in all frames. 
+     */
+    uint32_t frames = 0;
+};
+
 struct Slice {
     std::string name;
     std::string colour;
     std::vector<SliceKeys> keys;
-    std::optional<std::string> userData;
+    std::optional<NyaaAsepriteUserData> userData;
 };
 
 struct AsepriteMeta {

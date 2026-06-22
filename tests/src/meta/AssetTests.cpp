@@ -3,8 +3,13 @@
 #include <filesystem>
 #include <fstream>
 
-TEST_CASE("Verify slice positions and sizes") {
-    for (auto& de : std::filesystem::recursive_directory_iterator(std::filesystem::path{ "./assets/" })) {
+/**
+ * Tiles are always assumed to be 32x32, but this does not hold for entities, which differ.  
+ */
+TEST_CASE("Verify slice positions and sizes of tiles") {
+    for (auto& de : std::filesystem::recursive_directory_iterator(
+            std::filesystem::path{ "./assets/tilesets" })
+        ) {
         auto& path = de.path();
         if (path.extension() == ".json") {
             std::ifstream f(path);

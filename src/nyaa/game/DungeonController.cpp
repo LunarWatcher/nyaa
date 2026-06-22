@@ -17,13 +17,12 @@ DungeonController::DungeonController(
 }
 
 void DungeonController::tick(double) {
-
+    commonState->render.worldCam.translate(0, 0);
 }
 
 void DungeonController::render(double) {
     commonState->render.worldCam.apply();
 
-    // TODO: this is shit and you should feel bad
     for (size_t y = 0; y < state.size(); ++y) {
         for (size_t x = 0; x < state.at(0).size(); ++x) {
             auto tileType = state.at(y).at(x);

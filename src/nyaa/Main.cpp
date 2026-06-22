@@ -1,7 +1,10 @@
 #include "nyaa/core/GameManager.hpp"
+#include "nyaa/engine/NyaaEngine.hpp"
 #include "nyaa/engine/Preload.hpp"
 
 #include <CLI/CLI.hpp>
+#include <iostream>
+#include <allegro5/allegro.h>
 
 int main(int argc, const char* argv[]) {
 
@@ -20,6 +23,7 @@ int main(int argc, const char* argv[]) {
     );
 
     CLI11_PARSE(app, argc, argv);
+
 
     nyaa::engine::loadEngine();
     nyaa::GameManager manager;

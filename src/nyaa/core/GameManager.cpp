@@ -1,5 +1,7 @@
 #include "GameManager.hpp"
 #include "nyaa/common/CommonState.hpp"
+#include "nyaa/controllers/loading/SplashLoaderController.hpp"
+#include "nyaa/engine/NyaaEngine.hpp"
 #include "nyaa/engine/Window.hpp"
 #include "nyaa/game/DungeonController.hpp"
 
@@ -10,10 +12,13 @@ GameManager::GameManager() {
         .displayTitle = "Nyaa"
     });
 
+    this->engine = std::make_shared<engine::NyaaEngine>();
     this->commonState = std::make_shared<common::CommonState>();
+    this->commonState->engine = this->engine;
+    
     // this->commonState->render.worldCam.translate(100, 100);
     window->setController(
-        std::make_shared<game::DungeonController>(
+        std::make_shared<SplashLoaderController>(
             commonState
         )
     );

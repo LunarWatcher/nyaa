@@ -34,10 +34,18 @@ void nyaa::engine::aseprite::from_json(const nlohmann::json& j, Slice& d) {
     j.at("keys").get_to(d.keys);
     auto it = j.find("data");
     if (it != j.end()) {
-        // Forced: no std::optional deserializer
-        std::string v;
-        (*it).get_to(v);
-        d.userData = std::move(v);
+        std::string v = it->get<std::string>();
+        if (v.starts_with("nyaa")) {
+            std::stringstream ss;
+            ss << v;
+
+            NyaaAsepriteUserData userData;
+            ss.seekg(4); // Skip past identifier
+            ss >> userData.frames;
+
+            d.userData = userData;
+        }
+
     }
 }
 void nyaa::engine::aseprite::from_json(const nlohmann::json& j, AsepriteMeta& d) {

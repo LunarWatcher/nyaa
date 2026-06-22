@@ -105,8 +105,10 @@ set(ASSETS
     tilesets/tiles.png
     tilesets/tiles.json
 
-    creatures/character.png
-    creatures/character.json
+    creatures/creatures.png
+    creatures/creatures.json
+
+    splash.png
 )
 foreach(ASSET IN LISTS ASSETS)
     message(STATUS "Copying ${ASSET}")
@@ -142,7 +144,7 @@ add_subdirectory(src)
 add_subdirectory(tests EXCLUDE_FROM_ALL)
 
 add_custom_target(run
-    COMMAND nyaa
+    COMMAND nyaa --debug
     DEPENDS nyaa
     COMMENT "Run nyaa")
 add_custom_target(test
