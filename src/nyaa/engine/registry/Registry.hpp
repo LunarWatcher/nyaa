@@ -85,7 +85,7 @@ public:
     }
 
     std::string getAssetPath(const std::string& filename) {
-        return assetDir / filename;
+        return (assetDir / filename).string();
     }
 };
 
