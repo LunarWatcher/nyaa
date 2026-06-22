@@ -27,7 +27,7 @@ void DungeonController::render(double) {
         for (size_t x = 0; x < state.at(0).size(); ++x) {
             auto tileType = state.at(y).at(x);
 
-            if (tileType == GeneratedTileType::FLOOR) {
+            if (tileType == GeneratedTileType::Floor) {
                 al_draw_filled_rectangle(
                     (float) x, (float) y,
                     (float) x + 1, (float) y + 1,

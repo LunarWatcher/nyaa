@@ -10,12 +10,12 @@ namespace nyaa {
  * Determining what to render is done through a separate engine.
  */
 enum class GeneratedTileType {
-    FLOOR,
-    WALL,
-    DOOR,
+    Floor,
+    Wall,
+    Door,
     // Currently unused, mainly written down because I have a vague idea of what fancy generated maps could look like.
-    VOID,
-    WATER
+    Void,
+    Water
 };
 
 using FloorMap = std::vector<std::vector<GeneratedTileType>>;

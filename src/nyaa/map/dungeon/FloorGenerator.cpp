@@ -19,7 +19,7 @@ FloorMap FloorGenerator::generateFloor() {
     for (auto& row : m) {
         row.resize(this->maxWidth);
         for (auto& i : row) {
-            i = GeneratedTileType::FLOOR;
+            i = GeneratedTileType::Floor;
         }
     }
 
