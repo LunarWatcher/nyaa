@@ -12,8 +12,6 @@ add_library(nyaasrc STATIC
 add_library(nyaaengine
     nyaa/engine/Window.cpp
 
-    nyaa/engine/native/AllegroDeleters.cpp
-
     # Submodule for allegro extensions
     nyaa/engine/al/Camera.cpp
     nyaa/engine/al/OrthoCamera.cpp
@@ -21,6 +19,9 @@ add_library(nyaaengine
     # Submodule for aseprite loading
     nyaa/engine/aseprite/AsepriteJSON.cpp
     nyaa/engine/aseprite/SpritesheetLoader.cpp
+
+    # Submodule for registry loading of builtin types
+    nyaa/engine/loaders/FontLoader.cpp
 )
 add_executable(nyaa nyaa/Main.cpp)
 

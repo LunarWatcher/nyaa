@@ -101,19 +101,8 @@ configure_file(${ALLEGRO_SOURCE_DIR}/LICENSE.txt
     ${CMAKE_CURRENT_BINARY_DIR}/LICENSES/allegro5-UNK COPYONLY)
 configure_file(${alui_SOURCE_DIR}/LICENSE
     ${CMAKE_CURRENT_BINARY_DIR}/LICENSES/alui-MIT COPYONLY)
-set(ASSETS
-    tilesets/tiles.png
-    tilesets/tiles.json
 
-    creatures/creatures.png
-    creatures/creatures.json
-
-    splash.png
-)
-foreach(ASSET IN LISTS ASSETS)
-    message(STATUS "Copying ${ASSET}")
-    configure_file(assets/${ASSET} ${CMAKE_CURRENT_BINARY_DIR}/assets/${ASSET} COPYONLY)
-endforeach()
+add_subdirectory(assets)
 
 if (NYAA_LINT)
     find_program(

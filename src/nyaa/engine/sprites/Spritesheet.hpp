@@ -39,7 +39,7 @@ private:
     BitmapPtr bitmap;
 public:
     Spritesheet(ALLEGRO_BITMAP* bitmap)
-        : bitmap(bitmap, &deleteBitmap) {}
+        : bitmap(bitmap, &al_destroy_bitmap) {}
 
     ALLEGRO_BITMAP* get() { return bitmap.get(); }
 };

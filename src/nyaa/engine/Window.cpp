@@ -55,7 +55,6 @@ void Window::run() {
 
     ALLEGRO_EVENT ev;
     bool redraw = false;
-    bool done = false;
 
     auto prev = std::chrono::steady_clock::now();
 
@@ -68,15 +67,15 @@ void Window::run() {
             break;
 
         case ALLEGRO_EVENT_DISPLAY_CLOSE:
-            done = true;
-            break;
+            return;
         case ALLEGRO_EVENT_DISPLAY_RESIZE:
+            if (this->controller) {
+                this->controller->onResize(
+                    ev.display.width,
+                    ev.display.height
+                );
+            }
             al_acknowledge_resize(display);
-            break;
-        }
-
-        // TODO: I don't like this pattern
-        if (done) {
             break;
         }
 

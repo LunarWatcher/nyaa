@@ -2,48 +2,14 @@
 
 #include "nyaa/engine/Logger.hpp"
 #include "nyaa/engine/native/AllegroDeleters.hpp"
-#include "nyaa/engine/sprites/Spritesheet.hpp"
+#include "nyaa/engine/registry/FontRegistry.hpp"
+#include "nyaa/engine/registry/SpriteRegistry.hpp"
 
-#include <allegro5/bitmap_io.h>
+#include <filesystem>
 
 #include <stc/Environment.hpp>
-#include <filesystem>
-#include <string>
-#include <unordered_map>
 
 namespace nyaa::engine {
-
-class SpriteRegistry {
-private:
-    std::vector<std::shared_ptr<Spritesheet>> loadedSpritesheets;
-    std::unordered_map<std::string, std::shared_ptr<Sprite>> sprites;
-
-public:
-    void addSpritesheet(
-        std::shared_ptr<Spritesheet>&& spritesheet
-    ) {
-        loadedSpritesheets.push_back(
-            std::move(spritesheet)
-        );
-    }
-
-    std::shared_ptr<Sprite>& getSprite(const std::string& name) {
-        return sprites.at(name);
-    }
-
-    void createSprite(
-        const std::string& spriteName,
-        std::vector<Slice>&& slices
-    ) {
-        sprites.emplace(
-            spriteName,
-            std::make_shared<Sprite>(
-                std::move(slices)
-            )
-        );
-    }
-};
-
 /**
  * \brief Shared state for the game that contains assets
  *
@@ -60,6 +26,7 @@ private:
     std::filesystem::path assetDir = "./assets/";
 public:
     SpriteRegistry spriteRegistry;
+    FontRegistry fontRegistry;
 
     BitmapPtr loadBitmap(
         const std::string& assetRelativePath
@@ -80,7 +47,33 @@ public:
         }
         return BitmapPtr(
             ptr,
-            deleteBitmap
+            &al_destroy_bitmap
+        );
+    }
+
+    FontPtr loadFont(
+        const std::string& assetRelativePath,
+        int fontSize
+    ) {
+        auto path = getAssetPath(assetRelativePath);
+        if (!std::filesystem::exists(path)) {
+            logger->error("Failed to resolve {}", path);
+            throw std::runtime_error("Asset loading failed");
+        }
+        logger->debug("Loading font {}", path);
+        auto ptr = al_load_ttf_font(
+            path.c_str(),
+            fontSize,
+            0
+        );
+        if (ptr == nullptr) {
+            logger->error("Failed to open or parse {}", path);
+            throw std::runtime_error("Asset loading failed");
+        }
+
+        return FontPtr(
+            ptr,
+            &al_destroy_font
         );
     }
 

@@ -3,6 +3,8 @@
 #include <filesystem>
 #include <fstream>
 
+namespace {
+
 /**
  * Tiles are always assumed to be 32x32, but this does not hold for entities, which differ.  
  */
@@ -43,5 +45,7 @@ TEST_CASE("Verify slice positions and sizes of tiles") {
             }
         }
     }
+
+}
 
 }

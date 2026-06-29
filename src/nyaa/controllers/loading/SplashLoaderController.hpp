@@ -5,38 +5,29 @@
 #include <allegro5/allegro.h>
 #include <allegro5/bitmap.h>
 
+#include "alui/GUI.hpp"
+#include "alui/images/Image.hpp"
+
 namespace nyaa {
 
 class SplashLoaderController : public engine::Controller {
 private:
     std::shared_ptr<common::CommonState> commonState;
+    alui::GUI gui;
 
     engine::BitmapPtr splash;
+    std::shared_ptr<alui::ImageSlice> splashImage;
+
+    void loadAssets();
+    void loadGUI();
 public:
     SplashLoaderController(
         std::shared_ptr<common::CommonState> state
     );
 
-    void render(double) override {
-        commonState->render.uiCam.apply();
-        al_draw_scaled_bitmap(
-            this->splash.get(),
-            0,
-            0,
-            al_get_bitmap_width(this->splash.get()),
-            al_get_bitmap_height(this->splash.get()),
-            -0.5,
-            -0.5,
-            1,
-            1,
-            0
-        );
-    }
-
-    void tick(double delta) override {
-
-    }
-
+    void render(double) override;
+    void tick(double delta) override;
+    void onResize(float width, float height) override;
 };
 
 }

@@ -33,7 +33,7 @@ public:
     Window(Window&) = delete;
 
     // TODO: Transitions? maybe with a metacontroller?
-    void setController(std::shared_ptr<Controller> newController) {
+    void setController(std::shared_ptr<Controller>&& newController) {
         this->controller = newController;
     }
 
