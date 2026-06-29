@@ -27,9 +27,6 @@ class NyaaTheUntitledGame(ConanFile):
         # This is required for ZLIB_INCLUDE_DIRS to be populated
         self.requires("zlib/1.3.1")
 
-    def configure(self):
-        self.options["spdlog"].use_std_fmt = True
-
     def generate(self):
         PREFERRED_LICENSES = [
             "Unlicense",
