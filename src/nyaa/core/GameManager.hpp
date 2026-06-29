@@ -17,6 +17,15 @@ public:
 
     void run();
 
+    template <typename T, class... Args>
+    void transition(Args&&... args) {
+        window->setController(
+            std::make_shared<T>(
+                commonState,
+                std::forward<Args>(args)...
+            )
+        );
+    }
     void onResize(engine::Window *window, float width, float height) override;
 };
 

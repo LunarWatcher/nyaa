@@ -59,6 +59,9 @@ void Window::run() {
     auto prev = std::chrono::steady_clock::now();
 
     while (true) {
+        if (newController != nullptr) {
+            controller = std::move(newController);
+        }
         al_wait_for_event(queue, &ev);
 
         switch(ev.type) { // NOLINT
@@ -77,6 +80,10 @@ void Window::run() {
             }
             al_acknowledge_resize(display);
             break;
+        }
+
+        if (controller) {
+            controller->rawProcessEvent(ev);
         }
 
         if (redraw && al_is_event_queue_empty(queue)) {

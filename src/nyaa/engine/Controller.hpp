@@ -1,5 +1,7 @@
 #pragma once
 
+#include "allegro5/events.h"
+
 namespace nyaa::engine {
 
 class Controller {
@@ -11,6 +13,10 @@ public:
     virtual void onResize(
         float /* width */,
         float /* height */
+    ) {}
+
+    virtual void rawProcessEvent(
+        const ALLEGRO_EVENT& /* ev */
     ) {}
 };
 

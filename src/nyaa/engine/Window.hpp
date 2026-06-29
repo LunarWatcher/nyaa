@@ -26,6 +26,10 @@ private:
     ALLEGRO_DISPLAY* display;
     // }}}
 
+    /**
+     * Temporary cache to allow the destructors of a controller to be thread-unsafe
+     */
+    std::shared_ptr<Controller> newController;
     std::shared_ptr<Controller> controller;
     AppController* appController;
 public:
@@ -35,10 +39,8 @@ public:
     Window(Window&&) = delete;
     Window(Window&) = delete;
 
-    // TODO: Transitions? This will likely require making controller a vector or queue or stack or whatever and a
-    // pointer that tracks planned removals, which will likely get very spicy to implement
     void setController(std::shared_ptr<Controller>&& newController) {
-        this->controller = newController;
+        this->newController = newController;
     }
 
     /**

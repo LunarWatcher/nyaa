@@ -5,6 +5,13 @@
 #include "alui/components/Text.hpp"
 #include "alui/layouts/FlexBox.hpp"
 #include "nyaa/common/Constants.hpp"
+#include "nyaa/initializer/Initializer.hpp"
+#include "nyaa/core/GameManager.hpp"
+
+#include "nyaa/controllers/menus/MainMenuController.hpp"
+
+#include <chrono>
+#include <thread>
 
 namespace nyaa {
 
@@ -24,10 +31,17 @@ SplashLoaderController::SplashLoaderController(
 {
     loadAssets();
     loadGUI();
+
+    this->loaderThread = std::thread(
+        std::bind(
+            &SplashLoaderController::loadGame,
+            this
+        )
+    );
 }
 
 void SplashLoaderController::loadAssets() {
-    this->splashImage = std::make_shared<alui::ImageSlice>(
+    this->splashImageSlice = std::make_shared<alui::ImageSlice>(
         splash.get(),
         0, 0,
         al_get_bitmap_width(splash.get()),
@@ -48,7 +62,7 @@ void SplashLoaderController::loadGUI() {
 
     layout->push(
         std::make_shared<alui::ImageComponent>(
-            this->splashImage,
+            this->splashImageSlice,
             alui::ComponentConfig {
                 .flex = 1,
                 .minWidth = alui::Magnitude::Relative(1)
@@ -66,9 +80,34 @@ void SplashLoaderController::loadGUI() {
     gui.pushBack(layout);
 }
 
+SplashLoaderController::~SplashLoaderController() {
+    if (this->loaderThread.joinable()) {
+        this->loaderThread.join();
+    }
+}
+
 void SplashLoaderController::render(double) {
-    // commonState->render.uiCam.apply();
     gui.render();
+}
+
+void SplashLoaderController::loadGame() {
+    auto start = std::chrono::steady_clock::now();
+    minilog::info("Asset loading started");
+    Initializer::initializeAssets(this->commonState->engine->getRegistry(), progress);
+
+    auto end = std::chrono::steady_clock::now();
+    auto delta = std::chrono::duration_cast<std::chrono::milliseconds>(
+        end - start
+    ).count();
+    minilog::info("Asset loading finished in {}ms", delta);
+    if (delta < 2000) {
+        minilog::info("Stalling");
+        std::this_thread::sleep_for(
+            std::chrono::milliseconds(2000 - delta)
+        );
+        minilog::info("Stalling done");
+    }
+    this->commonState->gameManager->transition<MainMenuController>();
 }
 
 void SplashLoaderController::tick(double) {

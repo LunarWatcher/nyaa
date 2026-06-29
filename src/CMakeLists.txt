@@ -1,9 +1,12 @@
 add_library(nyaasrc STATIC
     nyaa/controllers/loading/SplashLoaderController.cpp
+    nyaa/controllers/menus/MainMenuController.cpp
 
     nyaa/core/GameManager.cpp
 
     nyaa/game/DungeonController.cpp
+
+    nyaa/initializer/Initializer.cpp
 
     nyaa/map/dungeon/FloorGenerator.cpp
 )
