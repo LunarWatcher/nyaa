@@ -28,6 +28,7 @@ GameManager::GameManager() {
     );
     
     // this->commonState->render.worldCam.translate(100, 100);
+    window->setAppController(this);
     window->setController(
         std::make_shared<SplashLoaderController>(
             commonState
@@ -37,6 +38,10 @@ GameManager::GameManager() {
 
 void GameManager::run() {
     window->run();
+}
+
+void GameManager::onResize(engine::Window*, float width, float height) {
+    
 }
 
 }
