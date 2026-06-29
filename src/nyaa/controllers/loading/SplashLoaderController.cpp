@@ -71,7 +71,7 @@ void SplashLoaderController::render(double) {
     gui.render();
 }
 
-void SplashLoaderController::tick(double delta) {
+void SplashLoaderController::tick(double) {
     gui.tick();
 }
 

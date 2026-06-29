@@ -1,4 +1,8 @@
 # License info
+
+This file contains the licenses for the third party assets that are covered by other licenses. Third party assets are not made specifically for this game, and are usually avoided.
+
+## `fonts/dejavu.ttf`
 dejavu.ttf is sourced from https://github.com/dejavu-fonts/dejavu-fonts.
 
 License ([source](https://github.com/dejavu-fonts/dejavu-fonts/blob/master/LICENSE)):
