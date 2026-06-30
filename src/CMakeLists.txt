@@ -41,7 +41,7 @@ target_link_libraries(
     nyaasrc
 PUBLIC
     nyaaengine
-    CLI11::CLI11
+    CLI12::CLI12
 )
 
 target_link_libraries(nyaa PUBLIC nyaasrc)

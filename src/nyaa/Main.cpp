@@ -22,7 +22,7 @@ int main(int argc, const char* argv[]) {
         "Whether or not to enable verbose debug logging"
     );
 
-    CLI11_PARSE(app, argc, argv);
+    CLI12_PARSE(app, argc, argv);
 
 
     nyaa::engine::loadEngine();

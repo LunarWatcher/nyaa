@@ -67,9 +67,9 @@ FetchContent_Declare(minilog
     GIT_REPOSITORY https://github.com/LunarWatcher/minilog
 )
 # AI slop-free fork of CLIUtils/CLI11
-FetchContent_Declare(CLI11
-    GIT_REPOSITORY https://github.com/LunarWatcher/CLI11
-    GIT_TAG v3.0.0
+FetchContent_Declare(CLI12
+    GIT_REPOSITORY https://github.com/LunarWatcher/CLI12
+    GIT_TAG v3.1.0
 )
 # Initially tried to use this for camera stuff, but:
 # 1. Allegro has so much builtin stuff for that that it doesn't make sense to use anything else
@@ -88,7 +88,7 @@ FetchContent_MakeAvailable(
 
     stc
     minilog
-    CLI11
+    CLI12
 )
 
 # Mini-patch, alui doesn't properly set include dirs.
