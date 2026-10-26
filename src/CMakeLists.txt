@@ -1,6 +1,7 @@
 add_library(nyaasrc STATIC
     nyaa/controllers/loading/SplashLoaderController.cpp
     nyaa/controllers/menus/MainMenuController.cpp
+    nyaa/controllers/game/GameController.cpp
 
     nyaa/core/GameManager.cpp
 

@@ -22,6 +22,7 @@ class NyaaTheUntitledGame(ConanFile):
         # reflect-cpp is AI slop now
         # C++26 will include reflection, I think I can write my own library
         # wrapping yyjson then.
+        # TOOD: nlohmann/json is AI slop now (because of course it is...)
         self.requires("nlohmann_json/3.12.0")
         self.requires("libpng/1.6.53")
         # This is required for ZLIB_INCLUDE_DIRS to be populated

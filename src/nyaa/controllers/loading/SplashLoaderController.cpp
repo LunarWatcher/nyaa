@@ -114,8 +114,8 @@ void SplashLoaderController::tick(double) {
     gui.tick();
 }
 
-void SplashLoaderController::onResize(float width, float height) {
-    gui.resize(width, height);
+void SplashLoaderController::onResize(float, float) {
+    // gui.resize(width, height);
 }
 
 }

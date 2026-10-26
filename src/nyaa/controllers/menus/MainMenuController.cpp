@@ -10,19 +10,22 @@
 #include "alui/style/BackgroundColourStyle.hpp"
 #include "alui/style/BorderStyle.hpp"
 #include "nyaa/common/Constants.hpp"
-#include <cmath>
+#include "nyaa/controllers/game/GameController.hpp"
+#include "nyaa/core/GameManager.hpp"
 
 namespace nyaa {
 
 MainMenuController::MainMenuController(
     const common::CommonStatePtr& commonState
-) : gui(alui::GUIConfig {
+) : commonState(commonState),
+    gui(alui::GUIConfig {
         .font = commonState->engine->getRegistry().fontRegistry.getFont(
             Constants::DefaultFont
         ),
         .width = alui::Magnitude::Relative(1.f),
         .height = alui::Magnitude::Relative(1.f),
-    }) {
+    })
+{
     initializeGUI();
 }
 
@@ -62,7 +65,7 @@ void MainMenuController::initializeGUI() {
     title->setTextColour(al_map_rgba_f(1, 1, 1, 1));
 
     auto btn = std::make_shared<alui::Button>(
-        "Click me to do nothing",
+        "Play",
         alui::ComponentConfig {
             .flex {0},
             .id = PlayButton,
@@ -71,8 +74,8 @@ void MainMenuController::initializeGUI() {
         }
     );
     btn->setTextColour(al_map_rgba_f(1, 1, 1, 1));
-    btn->addClickListener([](alui::Component*, float, float) {
-        std::cout << "Okay, it's not *nothing* nothing, but it's approximately nothing" << std::endl;
+    btn->addClickListener([this](alui::Component*, float, float) {
+        this->commonState->gameManager->transition<GameController>();
         return true;
     });
 
@@ -89,8 +92,8 @@ void MainMenuController::tick(double) {
     gui.tick();
 }
 
-void MainMenuController::onResize(float width, float height) {
-    gui.resize(width, height);
+void MainMenuController::onResize(float, float) {
+    // gui.resize(width, height);
 }
 
 void MainMenuController::rawProcessEvent(const ALLEGRO_EVENT& ev) {

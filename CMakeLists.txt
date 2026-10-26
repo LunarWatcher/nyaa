@@ -62,9 +62,11 @@ FetchContent_Declare(alui
 )
 FetchContent_Declare(stc
     GIT_REPOSITORY https://github.com/LunarWatcher/stc
+    GIT_TAG v2026-09-13
 )
 FetchContent_Declare(minilog
     GIT_REPOSITORY https://github.com/LunarWatcher/minilog
+    GIT_TAG adfca0bcd67d4416778621e5071f512e8bf27bc4
 )
 # AI slop-free fork of CLIUtils/CLI11
 FetchContent_Declare(CLI12
