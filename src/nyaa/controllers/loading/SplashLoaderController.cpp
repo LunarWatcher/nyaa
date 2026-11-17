@@ -41,11 +41,14 @@ SplashLoaderController::SplashLoaderController(
 }
 
 void SplashLoaderController::loadAssets() {
-    this->splashImageSlice = std::make_shared<alui::ImageSlice>(
+    this->splashImageSlice = std::make_shared<alui::ImageSliceFactory>(
         splash.get(),
-        0, 0,
-        al_get_bitmap_width(splash.get()),
-        al_get_bitmap_height(splash.get())
+        alui::Rect {
+            0,
+            0,
+            (float) al_get_bitmap_width(splash.get()),
+            (float) al_get_bitmap_height(splash.get())
+        }
     );
 }
 

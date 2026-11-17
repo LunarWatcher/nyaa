@@ -7,7 +7,7 @@
 #include <thread>
 
 #include "alui/GUI.hpp"
-#include "alui/images/Image.hpp"
+#include "alui/images/ImageSliceFactory.hpp"
 
 namespace nyaa {
 
@@ -17,7 +17,7 @@ private:
     alui::GUI gui;
 
     engine::BitmapPtr splash;
-    std::shared_ptr<alui::ImageSlice> splashImageSlice;
+    std::shared_ptr<alui::ImageSliceFactory> splashImageSlice;
 
     // TODO: use in a progress bar. alui does not have one yet
     float progress = 0;
