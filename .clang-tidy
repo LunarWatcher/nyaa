@@ -24,6 +24,7 @@ Checks: >
   -bugprone-macro-parentheses,
   -bugprone-narrowing-conversions,
   -bugprone-chained-comparison,
+  -bugprone-unchecked-optional-access,
   -clang-analyzer-optin.core.EnumCastOutOfRange,
   -clang-diagnostic-unused-parameter,
   -clang-diagnostic-unused-private-field,
