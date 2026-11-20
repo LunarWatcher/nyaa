@@ -1,0 +1,35 @@
+{ "frames": [
+   {
+    "filename": "surface.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 4096, "h": 4096 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 4096, "h": 4096 },
+    "sourceSize": { "w": 4096, "h": 4096 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.3.18.6-x64",
+  "image": "surface.png",
+  "format": "RGBA8888",
+  "size": { "w": 4096, "h": 4096 },
+  "scale": "1",
+  "slices": [
+   { "name": "grasslandsforest::grass::detail", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 0, "y": 0, "w": 32, "h": 32 } }] },
+   { "name": "grasslandsforest::flowers::pink", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 32, "y": 0, "w": 32, "h": 32 } }] },
+   { "name": "grasslandsforest::flowers::purple", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 64, "y": 0, "w": 32, "h": 32 } }] },
+   { "name": "grasslandsforest::grass::short", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 0, "y": 32, "w": 32, "h": 32 } }] },
+   { "name": "grasslandsforest::path::rocky", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 64, "y": 64, "w": 32, "h": 32 } }] },
+   { "name": "grasslandsforest::path::rocky::grassnorth", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 96, "y": 64, "w": 32, "h": 32 } }] },
+   { "name": "grasslandsforest::path::rocky::grasswest", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 128, "y": 64, "w": 32, "h": 32 } }] },
+   { "name": "grasslandsforest::path::rocky::grasssouth", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 64, "y": 96, "w": 32, "h": 32 } }] },
+   { "name": "grasslandsforest::path::rocky::grasseast", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 96, "y": 96, "w": 32, "h": 32 } }] },
+   { "name": "grasslandsforest::path::rocky::grassnorthwest", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 128, "y": 96, "w": 32, "h": 32 } }] },
+   { "name": "grasslandsforest::path::rocky::grassnortheast", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 64, "y": 128, "w": 32, "h": 32 } }] },
+   { "name": "grasslandsforest::path::rocky::grasssoutheast", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 96, "y": 128, "w": 32, "h": 32 } }] },
+   { "name": "grasslandsforest::path::rocky::grasssouthwest", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 128, "y": 128, "w": 32, "h": 32 } }] }
+  ]
+ }
+}

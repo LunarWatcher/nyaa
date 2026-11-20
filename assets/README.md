@@ -4,15 +4,10 @@ This folder contains the various assets, including the raw `.aseprite` files.
 
 This folder contains a mix of exported and non-exported files. Only the `.json` and `.png` files are exported during the build, as `.aseprite` is a proprietary format without any C/C++-based parsers[^1], so it has no value at runtime.
 
-## Export requirements
+## Exporting the aseprite files
 
-The exports are assumed to use png+json, with the JSON in the `array` format. If you use `hash` instead, the JSON cannot be imported.
+Run `./scripts/export-aseprite.sh`.
 
-Command (TODO: script):
-```
-export name=creatures
-aseprite --list-slices --sheet ${name}.png --data ${name}.json --format json-array -b ${name}.aseprite
-```
 
 ## Future plans
 

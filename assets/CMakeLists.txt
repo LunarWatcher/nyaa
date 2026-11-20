@@ -1,10 +1,13 @@
 set(ASSETS
     tilesets/tiles.png
     tilesets/tiles.json
+    tilesets/surface.png
+    tilesets/surface.json
 
     creatures/creatures.png
     creatures/creatures.json
 
+    # TODO: figure out how to use the system default font
     fonts/dejavu.ttf
 
     splash.png
