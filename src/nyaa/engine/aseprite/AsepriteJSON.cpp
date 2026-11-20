@@ -26,6 +26,11 @@ void nyaa::engine::aseprite::from_json(const nlohmann::json& j, Frame& d) {
 void nyaa::engine::aseprite::from_json(const nlohmann::json& j, SliceKeys& d) {
     j.at("frame").get_to(d.frame);
     j.at("bounds").get_to(d.bounds);
+
+    if (auto it = j.find("center"); it != j.end()) {
+        Bounds center = *it;
+        d.center = center;
+    }
 }
 void nyaa::engine::aseprite::from_json(const nlohmann::json& j, Slice& d) {
 

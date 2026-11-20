@@ -1,0 +1,27 @@
+{ "frames": [
+   {
+    "filename": "ui.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 4096, "h": 4096 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 4096, "h": 4096 },
+    "sourceSize": { "w": 4096, "h": 4096 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.3.18.6-x64",
+  "image": "ui.png",
+  "format": "RGBA8888",
+  "size": { "w": 4096, "h": 4096 },
+  "scale": "1",
+  "slices": [
+   { "name": "dialog::main", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 0, "y": 0, "w": 64, "h": 64 }, "center": {"x": 4, "y": 4, "w": 56, "h": 56 } }] },
+   { "name": "button::primary", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 64, "y": 0, "w": 32, "h": 16 }, "center": {"x": 4, "y": 4, "w": 24, "h": 8 } }] },
+   { "name": "button::secondary", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 64, "y": 16, "w": 32, "h": 16 }, "center": {"x": 4, "y": 4, "w": 24, "h": 8 } }] },
+   { "name": "button::danger", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 64, "y": 32, "w": 32, "h": 16 }, "center": {"x": 4, "y": 4, "w": 24, "h": 8 } }] },
+   { "name": "button::disabled", "color": "#0000ffff", "keys": [{ "frame": 0, "bounds": {"x": 64, "y": 48, "w": 32, "h": 16 }, "center": {"x": 4, "y": 4, "w": 24, "h": 8 } }] }
+  ]
+ }
+}

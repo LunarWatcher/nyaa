@@ -20,6 +20,13 @@ struct Position { uint64_t x, y; };
 
 struct Bounds {
     uint64_t x, y, w, h;
+
+    bool operator==(const Bounds& other) const {
+        return x == other.x
+            && y == other.y
+            && w == other.w
+            && h == other.h;
+    }
 };
 
 struct Frame {
@@ -36,6 +43,7 @@ struct Frame {
 struct SliceKeys {
     uint64_t frame;
     Bounds bounds;
+    std::optional<Bounds> center;
 };
 
 /**

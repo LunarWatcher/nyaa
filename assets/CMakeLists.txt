@@ -7,6 +7,9 @@ set(ASSETS
     creatures/creatures.png
     creatures/creatures.json
 
+    ui/ui.png
+    ui/ui.json
+
     # TODO: figure out how to use the system default font
     fonts/dejavu.ttf
 
